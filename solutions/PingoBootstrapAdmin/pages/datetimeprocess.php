@@ -1,8 +1,3 @@
-<?php
-    var_dump("123");
-    exit();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -391,48 +386,102 @@
                 </div>
                 <!-- /.row -->
 
-                
+                <?php
+                $day = isset($_POST['day'])?$_POST['day']:null;
+                $month = isset($_POST['month'])?$_POST['month']:null;
+                $year = isset($_POST['year'])?$_POST['year']:null;
+                $date = isset($_POST['date'])?$_POST['date']:null;
+                $checkInput = 0;
+                $datetime1;
+                $datetime2;
+                if (isset($_POST['submit']) || !empty($_POST['year']) || !empty($_POST['month']) || !empty($_POST['day']) || !empty($_POST['date'])) {
+                    //var_dump($_POST['year']);
+                    $checkInput = 1;
+                    if (checkdate($month, $day, $year)) {
+                        $checkInput = 3;
+                        $datetime1 = date_create("{$year}-{$month}-{$day}");
+                    }
+                    else 
+                    {
+                        $checkInput = 4;
+                    }
+                    
+                    $datetime2 = date_create($date);                    
+                }
+                else
+                {
+                    $checkInput = 2;
+                }
+
+
+                    ?>
+
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    User Infomation
+                                    Datetime Process
+
+
+                                    <?php 
+                                    if (isset($datetime2)) {
+                                        echo date_format($datetime2, 'd-m-Y');
+                                        echo "<br>";
+                                    }
+                                    
+                                    switch ($checkInput) {
+                                        case 1:
+                                            
+                                            break;
+                                        case 2:
+                                            echo "<h1> Please input all</h1>";
+                                            break;
+                                        case 3:
+                                            //echo "<h1> Convert Datetime ok ". date_format($datetime1, 'd-m-Y'). " </h1>
+                                            echo date_format($datetime1, 'd-m-Y');
+                                            break;
+                                        case 4:
+                                            echo "<h1> Convert Datetime fail </h1>";
+                                            break;
+                                        default:
+                                            # code...
+                                            break;
+                                    }
+                                    ?>
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                    <table class="table table-striped table-bordered table-hover">                                                                        <tbody>
-                                        <tr>
-                                            <td>fullname:</td>
-                                            <td><?php if (isset($_GET['name'])) {
-    echo $_GET['name'];
-}?></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>email:</td>
-                                            <td><?php if (isset($_GET['email'])) {
-    echo $_GET['email'];
-}?></td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>password:</td>
-                                            <td><?php if (isset($_GET['password'])) {
-    echo $_GET['password'];
-}?></td>
-                                            
-                                        </tr>
-                                        </tbody>
-                                        </table>
-                     
-                                        <a class="btn btn-success" href="register.php">
-                        <?php echo "Back to register" ?>
-                        </a>
+                                        <div class="col-lg-6">
+                                            <form role="form" action="datetimeprocess.php" method="POST">
+                                                <div class="form-group">
+                                                    <label>day: </label>
+                                                    <input class="form-control" name="day"  value = "<?php echo $day; ?>">
+                                                    <p class="help-block">Day is required.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>month: </label>
+                                                    <input class="form-control" name="month"  value = "<?php echo $month; ?>">
+                                                    <p class="help-block">month is required.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Year:</label>
+                                                    <input class="form-control" placeholder=""  name="year" value = "<?php echo $year; ?>">  <p class="help-block">year is required.</p>  
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Date:</label>
+                                                    <input class="form-control" placeholder="" type="date"  name="date">
+                                                    <p class="help-block"></p>
+                                                </div>
+                                                <button type="submit" class="btn btn-default"  name="submit" value="Register">Register</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+
+    
                 </div>
                 <!-- /#page-wrapper -->
 
