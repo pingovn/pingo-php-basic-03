@@ -7,3 +7,55 @@
 
 -- bai 3
 ^[a-z A-Z _][a-z A-Z _ 0-9]{3,11}$
+
+-- bai 5: Email
+^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$
+
+hoac:
+/^[A-z0-9_\-]+[@][A-z0-9_\-]+([.][A-z0-9_\-]+)+[A-z.]{2,4}$/
+
+hoac
+^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$
+
+
+-- bai 6: URL
+^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$
+hoac
+/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i
+
+-- bai 7: get all email email in string
+TIP: preg_match_all($pattern, $subject, $matches);
+
+-- bai 8: 
+
+TIPS: 
+<?php
+$string = "producturl.php?id=736375493?=tm";
+preg_match('~id=(\d+)~', $string, $m );
+var_dump($m[1]); // $m[1] is your string
+?>
+
+-- bai 9: 
+TIPS:
+   - Write regular expression for "a tag html" (Ex: <a href="http://freetuts.net/cd/lap-trinh-web-php-az">Lập trình web php az</a>)
+         /<a href=\"([^\"]*)\">(.*)<\/a>/iU
+ function replaceHref($html, $replaceStr)
+{
+    $match = array();
+    $url   = preg_match_all('/<a [^>]*href="(.+)"/', $html, $match);
+
+    if(count($match))
+    {
+        for($j=0; $j<count($match); $j++)
+        {
+            $html = str_replace($match[1][$j], $replaceStr.urlencode($match[1][$j]), $html);
+        }
+    }
+    return $html;
+}
+$replaceStr  = "http://affilate.domain.com?cam=1&url=";
+$replaceHtml = replaceHref($html, $replaceStr);
+
+echo $replaceHtml;
+
+-- bai 10: tuong tu bai 9
