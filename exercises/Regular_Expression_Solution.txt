@@ -23,7 +23,7 @@ hoac
 hoac
 /\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i
 
--- bai 7: get all email email in string
+-- bai 7: get all email in string
 TIP: preg_match_all($pattern, $subject, $matches);
 
 -- bai 8: 
