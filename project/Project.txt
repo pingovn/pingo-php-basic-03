@@ -3,6 +3,7 @@ Project 1:
 					update account information
 	- Create admin webpage to manage users, 
 					create front-end page for user login
+	- Manage permission by user groups.
 	- (*) Create simple news page to allow users post news with images, 
 					categories, search. Admin/editor can edit/approve. 
 					(**) Users can comment, like, etc...
