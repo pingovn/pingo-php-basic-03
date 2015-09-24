@@ -1,0 +1,17 @@
+p{
+				font-family: sans-serif;
+			    font-size: 14px;
+			    font-weight: 300;
+			    color: #423A36;
+			}
+			#first-paragraph
+			{
+				color: maroon;
+			}
+img{
+	border: 3px solid maroon;
+	border-radius: 20px;
+}
+iframe{
+	    border-radius: 20px;
+}
