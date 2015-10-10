@@ -25,7 +25,7 @@ else
 	<head>		
 	</head>
 	<body>
-		<form action="1.php" method="post">
+		<form action="solution_Regex_Bai_1.php" method="post">
 			Phone card: <input type="text" name="phone_card" id="phone_card">			
 			<br>
 			<?php
